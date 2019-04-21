@@ -1,12 +1,16 @@
 // Required Files
 let express = require("express")
 let mongoose = require("mongoose")
-let mongoURI = require("./config/key");
+let mongoURI = require("./config/key")
+let studnetControll = require("./Controller/student")
 
 // Middleware
 let app = express()
 app.use(express.urlencoded({extended : false}))
 app.use(express.json())
+
+// Setting up routes
+app.use("/students" , studnetControll)
 
 // Connecting to MongoDB Atlas
 mongoose.connect(mongoURI.mongoDB , {useNewUrlParser : true})

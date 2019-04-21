@@ -18,7 +18,7 @@ let section = new mongoose.Schema({
 })
 
 // Student Schema
-let student = new mongoose.Schema({
+let studentDetails = new mongoose.Schema({
     name : {
         type : String,
         required : true
@@ -32,7 +32,7 @@ let student = new mongoose.Schema({
 })
 
 // Collection
-let student = mongoose.model("student" , student);
+let student = mongoose.model("student" , studentDetails);
 
 // Exports
 module.exports = student
