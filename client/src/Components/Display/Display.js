@@ -7,20 +7,22 @@ const Display = (props) => {
     return(
         <div className="displayStudents">
             <table border={1} width="100%" align="center">
-                <tr>
-                    <th>ID</th>
-                    <th>Student</th>
-                    <th>Semester</th>
-                    <th>Subject</th>
-                    <th>Section</th>
-                </tr>
-                <tr>
-                    <td>16103030</td>
-                    <td>Rakib Uddin</td>
-                    <td>10th Semester</td>
-                    <td>Programming Language and Structure</td>
-                    <td>A</td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <th>ID</th>
+                        <th>Student</th>
+                        <th>Semester</th>
+                        <th>Subject</th>
+                        <th>Section</th>
+                    </tr>
+                    <tr>
+                        <td>16103030</td>
+                        <td>Rakib Uddin</td>
+                        <td>10th Semester</td>
+                        <td>Programming Language and Structure</td>
+                        <td>A</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     )
