@@ -1,0 +1,18 @@
+body, html{
+  width:100%;
+  height: 100%;
+}
+h1{
+  margin: 0 0 15px;
+  padding: 0;
+}
+body {
+  margin: 0;
+  padding: 0;
+  color: #333;  
+  text-align: center;
+  font-family: Kaushan Script;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background: linear-gradient(45deg, #5aebeb, #73ea73) no-repeat;
+}

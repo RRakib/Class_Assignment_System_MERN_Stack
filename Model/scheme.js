@@ -1,16 +1,24 @@
 // Required Files
 let mongoose = require("mongoose");
 
-// Class Schema
-let classModel = new mongoose.Schema({
+// Semester Schema
+let SemesterModel = new mongoose.Schema({
     name : {
         type : String,
         required : true
     }
 })
 
-//  Sectin Schema
-let section = new mongoose.Schema({
+// Section Schema
+let Section = new mongoose.Schema({
+    name : {
+        type : String,
+        required : true
+    }
+})
+
+// Subject Schema
+let Subject = new mongoose.Schema({
     name : {
         type : String,
         required : true
@@ -27,8 +35,9 @@ let studentDetails = new mongoose.Schema({
         type : Number,
         required : true
     },
-    class : [classModel],
-    section : [section]
+    semester : [SemesterModel],
+    section : [Section],
+    subject : [Subject]
 })
 
 // Collection

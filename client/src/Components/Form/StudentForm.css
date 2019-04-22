@@ -1,0 +1,19 @@
+::placeholder{
+    color: #666;
+    font-family: Kaushan Script;
+}
+.studentForm input{
+    width: 20%;
+    padding: 6px;
+}
+.studentForm select{
+    color: #555;
+    padding: 2.9px;
+    font-family: Kaushan Script;
+}
+.studentForm input , select{
+    outline: none;
+    margin: 15px 0;
+    background: lightcyan;
+    border: 1.5px solid darkcyan;
+}
