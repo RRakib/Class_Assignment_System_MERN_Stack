@@ -31,7 +31,7 @@ class Display extends Component{
 
     render(){
         console.log(this.props)
-        if(this.state.bol){
+        if(this.props.state.length >= 0){
             return(
                 <div className="displayStudents">
                 <table border={1} width="100%" align="center" >
