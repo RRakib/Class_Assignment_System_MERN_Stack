@@ -1,8 +1,11 @@
 // Imports
 import "./StudentForm.css";
-import React , { Component } from "react";
 import {connect} from "react-redux"
+import Display from "../Display/Display"
+import React , { Component } from "react";
+import axios from "axios"
 import {studentAction} from "../../Store/Action/studentAction"
+import {getStudents} from "../../Store/Action/studentAction"
 
 // Statefull Component
 class StudentForm extends Component{
@@ -14,6 +17,7 @@ class StudentForm extends Component{
             section : "",
             subject : "",
             semester : "",
+            bool : false
         }
     }
 
@@ -33,7 +37,21 @@ class StudentForm extends Component{
             subject,
             semester
         })
-
+        axios.get("/students")
+        .then(resData => {
+            console.log(resData)
+            this.props.getStudents(resData.data)    
+        })
+        .catch(err => {
+            console.log(err)
+        })
+        this.setState({
+            id : "",
+            name : "",
+            section : "",
+            subject : "",
+            semester : "",
+        })
     }
     render(){
         return(
@@ -91,6 +109,9 @@ class StudentForm extends Component{
                     </select>
                     <button>Submit</button>
                 </form>
+
+
+                <Display bool = {this.state.bool}/>
             </div>
         )
     }
@@ -98,10 +119,9 @@ class StudentForm extends Component{
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        studentAction : (student) => dispatch(studentAction(student))
+        studentAction : (student) => dispatch(studentAction(student)),
+        getStudents : (student) => dispatch(getStudents(student))
     }
 } 
-
-
 // Exports
 export default connect(null , mapDispatchToProps)(StudentForm);

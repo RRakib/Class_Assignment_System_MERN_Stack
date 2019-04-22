@@ -3,21 +3,24 @@ import "./Display.css"
 import axios from "axios"
 import {connect} from "react-redux"
 import React , {Component} from "react";
+import {getStudents} from "../../Store/Action/studentAction"
 
 // Stateless Component
 class Display extends Component{
     constructor(){
         super();
         this.state = {
-            data : {}
+            bol : false
         }
     }
 
     componentDidMount = () => {
         axios.get("/students")
-            .then(res => {
+            .then(resData => {
+                console.log(resData)
+                this.props.getStudents(resData.data)
                 this.setState({
-                    data : res.data
+                    bol : true
                 })
             })
             .catch(err => {
@@ -27,11 +30,8 @@ class Display extends Component{
 
 
     render(){
-        if(this.props.state.students.reload){
-            window.location.reload();
-        }
         console.log(this.props)
-        if(this.state.data.length > 0){
+        if(this.state.bol){
             return(
                 <div className="displayStudents">
                 <table border={1} width="100%" align="center" >
@@ -43,7 +43,7 @@ class Display extends Component{
                         <th>Subject</th>
                         <th>Section</th>
                     </tr>
-            {this.state.data.map(person => {
+            {this.props.state.map(person => {
                 return(
                         <tr key={person._id}>
                             <td>{person.id}</td>
@@ -72,9 +72,16 @@ class Display extends Component{
 
 const mapStateToProps = (state) => {
     return{
-        state : state
+        state : state.students
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return{
+        getStudents : (student) => dispatch(getStudents(student))
+    }
+}
+
+
 // Exports
-export default connect(mapStateToProps)(Display)
+export default connect(mapStateToProps , mapDispatchToProps)(Display)

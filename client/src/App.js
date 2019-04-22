@@ -11,7 +11,6 @@ class App extends Component {
       <div className="App">
         <h1>Class Assignment System</h1>
         <StudentForm /> 
-        <Display />
         <Footer />
       </div>
     );
