@@ -4,7 +4,7 @@ import studentReducer from "./studentReducer"
 
 // RootReducers
 const rootReducers = combineReducers({
-    student : studentReducer
+    students : studentReducer
 })
 
 // Exports

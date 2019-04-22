@@ -1,12 +1,40 @@
 // Imports
 import "./Display.css"
-import React from "react";
+import axios from "axios"
+import {connect} from "react-redux"
+import React , {Component} from "react";
 
 // Stateless Component
-const Display = (props) => {
-    return(
-        <div className="displayStudents">
-            <table border={1} width="100%" align="center">
+class Display extends Component{
+    constructor(){
+        super();
+        this.state = {
+            data : {}
+        }
+    }
+
+    componentDidMount = () => {
+        axios.get("/students")
+            .then(res => {
+                this.setState({
+                    data : res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+
+    render(){
+        if(this.props.state.students.reload){
+            window.location.reload();
+        }
+        console.log(this.props)
+        if(this.state.data.length > 0){
+            return(
+                <div className="displayStudents">
+                <table border={1} width="100%" align="center" >
                 <tbody>
                     <tr>
                         <th>ID</th>
@@ -15,18 +43,38 @@ const Display = (props) => {
                         <th>Subject</th>
                         <th>Section</th>
                     </tr>
-                    <tr>
-                        <td>16103030</td>
-                        <td>Rakib Uddin</td>
-                        <td>10th Semester</td>
-                        <td>Programming Language and Structure</td>
-                        <td>A</td>
-                    </tr>
+            {this.state.data.map(person => {
+                return(
+                        <tr key={person._id}>
+                            <td>{person.id}</td>
+                            <td>{person.name}</td>
+                            <td>{person.semester}</td>
+                            <td>{person.subject}</td>
+                            <td>{person.section}</td>
+                        </tr>
+                )
+            })}
                 </tbody>
-            </table>
-        </div>
-    )
+                </table>
+                </div>
+            )
+        }
+        else{
+            return(
+                <div className="displayStudents">
+                   <h2> Loading... </h2>
+                </div>
+            )
+            
+        }
+}
+}
+
+const mapStateToProps = (state) => {
+    return{
+        state : state
+    }
 }
 
 // Exports
-export default Display
+export default connect(mapStateToProps)(Display)

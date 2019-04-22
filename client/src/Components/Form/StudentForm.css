@@ -17,3 +17,9 @@
     background: lightcyan;
     border: 1.5px solid darkcyan;
 }
+.studentForm button{
+    padding: 4px 25px;
+    background: lightcyan;
+    font-family: Kaushan Script;
+    border: 1px solid darkcyan;
+}
