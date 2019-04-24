@@ -1,6 +1,30 @@
 // Required Files
 let mongoose = require("mongoose");
 
+// Section Schema
+let Section = new mongoose.Schema({
+    name : {
+        type : String,
+        required : true
+    },
+})
+
+// Section Schema
+let Semester = new mongoose.Schema({
+    name : {
+        type : String,
+        required : true
+    },
+})
+
+// Section Schema
+let Subject = new mongoose.Schema({
+    name : {
+        type : String,
+        required : true
+    },
+})
+
 // Student Schema
 let studentDetails = new mongoose.Schema({
     name : {
@@ -11,18 +35,9 @@ let studentDetails = new mongoose.Schema({
         type : Number,
         required : true
     },
-    semester : {
-        type : String,
-        required : true
-    },
-    section : {
-        type : String,
-        required : true
-    },
-    subject : {
-        type : String,
-        required : true
-    },
+    semester : [Semester],
+    section : [Section],
+    subject : [Subject]
 })
 
 // Collection

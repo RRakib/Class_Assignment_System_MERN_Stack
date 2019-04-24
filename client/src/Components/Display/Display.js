@@ -30,7 +30,6 @@ class Display extends Component{
 
 
     render(){
-        console.log(this.props)
         if(this.props.state.length >= 0){
             return(
                 <div className="displayStudents">
@@ -48,9 +47,9 @@ class Display extends Component{
                         <tr key={person._id}>
                             <td>{person.id}</td>
                             <td>{person.name}</td>
-                            <td>{person.semester}</td>
-                            <td>{person.subject}</td>
-                            <td>{person.section}</td>
+                            <td>{person.semester[0].name}</td>
+                            <td>{person.subject[0].name}</td>
+                            <td>{person.section[0].name}</td>
                         </tr>
                 )
             })}

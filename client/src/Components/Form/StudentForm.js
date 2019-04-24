@@ -14,18 +14,26 @@ class StudentForm extends Component{
         this.state = {
             id : "",
             name : "",
-            section : "",
-            subject : "",
-            semester : "",
+            section : [{name : ""}],
+            subject : [{name : ""}],
+            semester : [{name : ""}],
             bool : false
         }
     }
 
     handleChange = (e) => {
         const {name, value} = e.target;
-        this.setState({
-            [name] : value
-        })
+        if(name === "id" || name === "name"){
+            this.setState({
+                [name] : value
+            })
+        }
+        else if(name === "section" || name === "subject" || name === "semester"){
+            this.setState({
+                [name] : [{name : value}]
+            })
+        }
+
     }
     handleSubmit = (e) => {
         e.preventDefault();
@@ -48,12 +56,13 @@ class StudentForm extends Component{
         this.setState({
             id : "",
             name : "",
-            section : "",
-            subject : "",
-            semester : "",
+            section : [{name : ""}],
+            subject : [{name : ""}],
+            semester : [{name : ""}],
         })
     }
     render(){
+        console.log(this.state)
         return(
             <div className="studentForm">
                 <form onSubmit={this.handleSubmit}>
@@ -73,7 +82,7 @@ class StudentForm extends Component{
                         placeholder="Enter the student name"
                     />
 
-                    <select value={this.state.semester} onChange={this.handleChange} name="semester">
+                    <select value={this.state.semester[0].name} onChange={this.handleChange} name="semester">
                         <option>Select Semester</option>
                         <option value="1st semester">1st Semester</option>
                         <option value="2nd semester">2st Semester</option>
@@ -88,7 +97,7 @@ class StudentForm extends Component{
                         <option value="11th semester">11st Semester</option>
                     </select>
 
-                    <select value={this.state.subject} onChange={this.handleChange} name="subject">
+                    <select value={this.state.subject[0].name} onChange={this.handleChange} name="subject">
                         <option>Select Subject</option>
                         <option value="Software">Software</option>
                         <option value="System Analysis">System Analysis</option>
@@ -98,7 +107,7 @@ class StudentForm extends Component{
                         <option value="Programming Language and Structure">Programming Language and Structure</option>
                     </select>
 
-                    <select value={this.state.section} onChange={this.handleChange} name="section">
+                    <select value={this.state.section[0].name} onChange={this.handleChange} name="section">
                         <option>Select Section</option>
                         <option value="A">Sec - A</option>
                         <option value="B">Sec - B</option>
